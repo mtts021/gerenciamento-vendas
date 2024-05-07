@@ -20,19 +20,20 @@ CREATE TABLE IF NOT EXISTS "products" (
 
 CREATE TABLE IF NOT EXISTS "sales" (
   "id" SERIAL PRIMARY KEY,
-  "valor" int,
+  "value" real,
   "date_sale" date,
   "status_payment" STATUS_PAYMENT,
   "name_client" varchar(255),
   "last_name_client" varchar(255)
 );
 
-CREATE TABLE IF NOT EXISTS "sale_products" (
+CREATE TABLE IF NOT EXISTS "sales_products" (
   "id" SERIAL PRIMARY KEY,
   "sale_id" int,
-  "product_id" int
+  "product_id" int,
+  "quantity_product", int
 );
 
-ALTER TABLE "sale_products" ADD FOREIGN KEY ("sale_id") REFERENCES "sales" ("id");
+ALTER TABLE "sales_products" ADD FOREIGN KEY ("sale_id") REFERENCES "sales" ("id");
 
-ALTER TABLE "sale_products" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+ALTER TABLE "sales_products" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");

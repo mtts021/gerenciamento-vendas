@@ -1,4 +1,3 @@
-import { defaults } from "pg";
 import { connection } from "../connection.js";
 
 class ProductsRepository {
