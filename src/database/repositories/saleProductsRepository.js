@@ -11,10 +11,10 @@ class SalesRepository {
     return rows
   }
 
-  async create({saleId, productId}){
-    const sql = 'INSERT INTO sales_products(sale_id, product_id) VALUES($1, $2)'
+  async create({saleId, productId, quantityProduct}){
+    const sql = 'INSERT INTO sales_products(sale_id, product_id, quantity_product) VALUES($1, $2, $3)'
 
-    const {rows} = await connection.query(sql, [saleId, productId])
+    const {rows} = await connection.query(sql, [saleId, productId, quantityProduct])
 
     return  [saleId] = rows
     

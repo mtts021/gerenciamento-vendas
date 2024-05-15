@@ -17,10 +17,19 @@ class ProductsRepository {
     return product || null
   }
 
-  async create({bar_code, name, description, brand, price, quantity}){
+  async findByBarCodeProduct(productBarCode){
+    const sql = 'SELECT * FROM products WHERE bar_code = $1'
+
+    const {rows} = await connection.query(sql, [productBarCode])
+    const [product] =  rows
+
+    return product || null
+  }
+
+  async create({barCode, name, description, brand, price, quantity}){
     const sql = 'INSERT INTO products(bar_code, name, description, brand, price, quantity) VALUES($1, $2, $3, $4, $5, $6) RETURNING id'
 
-    const {rows} = await connection.query(sql, [bar_code, name, description, brand, price, quantity])
+    const {rows} = await connection.query(sql, [barCode, name, description, brand, price, quantity])
     const [productId] = rows
 
     return productId
