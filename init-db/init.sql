@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "sales_products" (
   "id" SERIAL PRIMARY KEY,
   "sale_id" int,
   "product_id" int,
-  "quantity_product", int
+  "quantity_product" int
 );
 
 ALTER TABLE "sales_products" ADD FOREIGN KEY ("sale_id") REFERENCES "sales" ("id");
